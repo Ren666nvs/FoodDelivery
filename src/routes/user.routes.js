@@ -24,4 +24,4 @@ router.get('/', authenticateToken, getAllUsers);
 // Нэг хэрэглэгчийг авах (GET)
 router.get('/:id', authenticateToken, getUser);
 
-export default router;
+
