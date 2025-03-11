@@ -6,32 +6,24 @@
 
 // 6. Create Model
 // 7. Store user data to MongoDB
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import {userRoutes} from './routes/user.routes.js'
-import {productRoutes} from './routes/product.routes.js'
-import {orderRoutes} from './routes/order.routes.js'
+import express from "express";
+import cors from "cors";
+import { userRouter } from "./routers/user-router.js";
+import { mongooseConnect } from "./utils/mongoose-connect.js";
+import { foodRouter } from "./routers/food-routes.js";
+import { categoryRouter } from "./routers/category-router.js";
 
-dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 3000;
+const port = 3000;
 
-
+mongooseConnect();
+app.use(cors());
 app.use(express.json());
 
-app.listen(PORT, () => console.log(` http://localhost:3000 ${PORT}`));
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+app.use("/users", userRouter);
+app.use("/food", foodRouter);
+app.use("/category", categoryRouter);
 
-dotenv.config();
-const mongoUrl = process.env.MONGO_URL;
-
-export const mongooseConnect = async () => {
-    try {
-        await mongoose.connect(mongoUrl);
-        console.log('Connected to database');
-    } catch (err) {
-        console.log('Failed to connect database', err);
-    };
-};
+app.listen(port, () => {
+  console.log(`Example app listening on port http://localhost:${port}`);
+});
