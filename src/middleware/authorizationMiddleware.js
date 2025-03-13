@@ -6,7 +6,6 @@ dotenv.config(); // .env файлыг уншина
 export const authorizationMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
-    // Authorization header байхгүй эсвэл Bearer форматаар эхлээгүй бол
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(401).json({ message: "unauthorized!!!" });
     }
@@ -14,9 +13,8 @@ export const authorizationMiddleware = (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     try {
-        // JWT-г шалгах (нууц түлхүүрийг .env-ээс авна)
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded; // Token доторх хэрэглэгчийн мэдээллийг req.user-д хадгалах
+        const decoded = jwt.verify(token, process.env.JWT_SECRET); // Нууц үгийг .env-ээс авна
+        req.user = decoded;
         next();
     } catch (error) {
         return res.status(401).json({ message: "unauthorized!!!" });
