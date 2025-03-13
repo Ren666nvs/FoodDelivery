@@ -1,4 +1,5 @@
 import express from 'express';
+// import { authorizationMiddleware } from '../middleware/authorizationMiddleware.js';
 import { authorizationMiddleware } from '../middleware/authorization.js';
 import { createFood } from '../controller/foods/create-food.js';
 import { getFoods } from '../controller/foods/get-foods.js';

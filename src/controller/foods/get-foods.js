@@ -10,7 +10,7 @@ export const getFoods = async (req, res) => {
     try {
         const foods = await FoodModel.find().populate(['category'])
 
-        res.json({ message: "success", data: foods })
+        res.json({ message: "success boljin", data: foods })
     } catch (err) {
         res.status(403).json({ message: "Error occured" });
     }

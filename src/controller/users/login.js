@@ -10,7 +10,7 @@ export const login = async (req, res) => {
         if (!user) return res.json({ message: "Username or Password did not match" })
         if (!bcrypt.compareSync(password, user.password)) return res.json({ message: "Username or Password did not match" })
 
-        var token = jwt.sign({ _id: user._id, role: user.role }, 'uneheer nuuts')
+        var token = jwt.sign({ _id: user._id, role: user.role }, 'uneheer_nuuts_bish_yostoi_nuuts')
 
         res.json({ token: token })
     } catch (err) {
