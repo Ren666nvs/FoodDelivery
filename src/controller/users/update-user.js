@@ -22,3 +22,11 @@ export const updateUser = (req, res) => {
     // hariu
     res.json({ message: "Success!" })
 }
+
+
+
+//kebab-case = file
+//snake-case = db varriable 
+//camel-case = front-end 
+//Pascal-case = front-end
+//UPPER-CASE = sql, back-end 

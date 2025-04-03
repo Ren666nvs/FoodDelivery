@@ -16,4 +16,4 @@ const UserSchema = mongoose.Schema({
     updatedAt: Date
 })
  
-export const UserModel = mongoose.models['UserSchema'] || mongoose.model('user', UserSchema)
+export const UserModel = mongoose.models['UserSchema'] || mongoose.model('UserSchema', UserSchema)

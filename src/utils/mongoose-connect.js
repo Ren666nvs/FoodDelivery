@@ -1,18 +1,20 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 dotenv.config();
-const mongoUrl = process.env.MONGO_URL;
-console.log(
-    mongoUrl
-);
 
-
-export const mongooseConnect = async () => {
-    try {
-        await mongoose.connect(mongoUrl);
-        console.log('Connected to database');
-    } catch (err) {
-        console.log('Failed to connect database', err);
-    };
+const connectToDatabase = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      tls: true,  // SSL асуудлыг засах тохиргоо
+    });
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+    process.exit(1);
+  }
 };
+
+export default connectToDatabase;

@@ -7,7 +7,7 @@ export const authorizationMiddleware = (req, res, next) => {
     const token = authorization.split(' ')[1]
 
     try {
-        jwt.verify(token, 'uneheer_nuuts_bish_yostoi_nuuts');
+        jwt.verify(token, 'uneheer nuuts');
         next();
     } catch (err) {
         return res.json({ message: "unauthorized!!!" })

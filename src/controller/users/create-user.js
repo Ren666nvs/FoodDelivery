@@ -11,6 +11,8 @@ export const createUser = async (req, res) => {
 
     res.json({ message: "Success" });
   } catch (err) {
+    console.log(err);
+    
     res.status(403).json({ message: "Error occured" });
   }
 };
