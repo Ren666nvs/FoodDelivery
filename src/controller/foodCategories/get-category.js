@@ -1,5 +1,7 @@
 import { FoodCategoryModel } from "../../models/category.model.js";
+import { config } from "dotenv";
 
+config();
 const getCategories = async (req, res) => {
   try {
     const categories = await FoodCategoryModel.find();

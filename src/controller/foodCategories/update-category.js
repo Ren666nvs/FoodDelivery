@@ -1,5 +1,7 @@
 import { FoodCategoryModel } from "../../models/category.model.js";
+import { config } from "dotenv";
 
+config();
 export const updateCategory = async (req, res) => {
   const { id } = req.params;
   const { categoryName } = req.body;
