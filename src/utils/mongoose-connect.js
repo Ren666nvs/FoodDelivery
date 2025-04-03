@@ -1,20 +1,22 @@
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+import mongoose from 'mongoose';
 
-dotenv.config();
-
-const connectToDatabase = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      tls: true,  // SSL асуудлыг засах тохиргоо
-    });
-    console.log("Connected to MongoDB");
-  } catch (error) {
-    console.error("MongoDB connection error:", error);
-    process.exit(1);
+const mongooseConnect = () => {
+  const mongoUri = process.env.MONGO_URI;  // Make sure this is correctly loaded
+  if (!mongoUri) {
+    console.error('MONGO_URI is not defined in .env');
+    process.exit(1);  // Exit if MONGO_URI is not set
   }
+
+  mongoose.connect(mongoUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('MongoDB холболт амжилттай!');
+  })
+  .catch((err) => {
+    console.error('MongoDB холболт амжилтгүй:', err.message);
+  });
 };
 
-export default connectToDatabase;
+export default mongooseConnect;
