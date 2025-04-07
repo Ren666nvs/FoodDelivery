@@ -1,4 +1,4 @@
-import foodOrderModel from "../../models/foodOrder.scheme.js";
+import foodOrderModel from "../../models/food.model";
 
 const getOrderById = async (req, res) => {
   try {

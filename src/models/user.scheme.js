@@ -12,11 +12,20 @@ const userSchema = new Schema(
       enum: ["user", "admin"],
       default: "user",
     },
-    orderedFoods: [{ type: Schema.Types.ObjectId, ref: "FoodOrder" }],
+    orderedFoods: {
+      type: [Schema.Types.ObjectId],
+      ref: "FoodOrder",
+      default: [],
+    },
     isVerified: { type: Boolean, default: false },
-    ttl: { type: Date, default: Date.now, expires: "30d" }, 
+    ttl: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );
+
+userSchema.pre("save", function (next) {
+  this.updatedAt = Date.now();
+  next();
+});
 
 export const userModel = model("User", userSchema);

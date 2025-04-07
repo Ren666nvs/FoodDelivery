@@ -4,15 +4,26 @@
 
 //   res.json({ message: "food created successfully!", food: newFood });
 // };
+// import { FoodModel } from "../../models/food.model.js";
+
+// export const getFoods = async (req, res) => {
+//   try {
+//     const foods = await FoodModel.find().populate(["category"]);
+
+//     res.json({ message: "success boljin", data: foods });
+//   } catch (err) {
+//     res.status(403).json({ message: "Error occured" });
+//   }
+// };
 import { FoodModel } from "../../models/food.model.js";
 
 export const getFoods = async (req, res) => {
   try {
-    const foods = await FoodModel.find().populate(["category"]);
+    const foods = await FoodModel.find().populate("category");
 
-    res.json({ message: "success boljin", data: foods });
+    res.json({ message: "Foods fetched successfully", data: foods });
   } catch (err) {
-    res.status(403).json({ message: "Error occured" });
+    res.status(403).json({ message: "Error occurred while fetching foods" });
   }
 };
 

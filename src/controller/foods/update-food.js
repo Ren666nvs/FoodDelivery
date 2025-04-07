@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-import foodModel from "../../models/food.scheme.js";
+import foodModel from "../../models/category.model.js";
 
 export const updateFood = async (req, res) => {
   const { id } = req.params;
-  const { image, name  } = req.body;
+  const { image, name } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ message: "Invalid Food ID" });
@@ -12,7 +12,7 @@ export const updateFood = async (req, res) => {
   try {
     const updatedFood = await foodModel.findByIdAndUpdate(
       id,
-      { image, name},
+      { image, name },
       { new: true }
     );
 
